@@ -8,7 +8,6 @@
   "接口写超时": "单位毫秒",
   "serviceWriteTimeout": 2000,
 
-  // 网管列表
   "网关列表": "推送将分发给所有网关",
   "gatewayList": [
     {

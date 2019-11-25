@@ -32,6 +32,7 @@ func (wsConnection *WSConnection) readLoop() {
 			goto ERR
 		}
 
+		// 构造成结构体信息???
 		message = common.BuildWSMessage(msgType, msgData)
 
 		select {

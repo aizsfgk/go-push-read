@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/websocket"
 	"encoding/json"
 	"github.com/owenliang/go-push/common"
+	"go-push-read/gateway/protocol/app/jsonproto"
 )
 
 // 每隔1秒, 检查一次连接是否健康
@@ -109,6 +110,27 @@ func (wsConnection *WSConnection) handleLeave(bizReq *common.BizMessage) (bizRes
 	return
 }
 
+func (WSConnection *WSConnection) handleRequest(bizReq *common.BizMessage) (bizResp *common.BizMessage, err error) {
+
+	// 解密协议
+	// humanText, err := cipher.Decode(bizReq.Payload)
+	// switch bizReq.Header.PayloadType {
+	//     case 0:
+				// 结构
+				var (
+					req jsonproto.Req
+				)
+				err = json.Unmarshal(humanText, &req)
+				if err != nil {
+					return
+				}
+				handleAppJoson(req)
+	//     case 1:
+	//     case 2:
+	// }
+	return
+}
+
 func (wsConnection *WSConnection) leaveAll() {
 	var (
 		roomId string
@@ -119,6 +141,8 @@ func (wsConnection *WSConnection) leaveAll() {
 		delete(wsConnection.rooms, roomId)
 	}
 }
+
+
 
 // 处理websocket请求
 func (wsConnection *WSConnection) WSHandle() {
@@ -170,6 +194,11 @@ func (wsConnection *WSConnection) WSHandle() {
 			}
 		case "LEAVE":
 			if bizResp, err = wsConnection.handleLeave(bizReq); err != nil {
+				goto ERR
+
+			}
+		case "REQUEST":
+			if bizResp, err = wsConnection.handleRequest(bizReq); err != nil {
 				goto ERR
 			}
 		}

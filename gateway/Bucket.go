@@ -87,30 +87,30 @@ func (bucket *Bucket) LeaveRoom(roomId string, wsConn *WSConnection) (err error)
 }
 
 // 推送给指定的mid用户
-func (bucket *Bucket) PushMid(mids []string, wsMsg *common.WSMessage) {
-	var (
-		existed bool
-		mid string
-		wsConn *WSConnection
-	)
-
-	bucket.rwMutex.RLock()
-	defer. bucket.rwMutex.RUnlock()
-
-	// 假如mids是一个100w的数据，可以实现吗?
-	// 
-	// 
-	// 
-	// 
-	for _,mid = range mids {
-		wsConn, existed = bucket.id2Conn[mid]
-		if !existed {
-			continue
-		}
-		wsConn.SendMessage(wsMsg)
-	}
-
-}
+//func (bucket *Bucket) PushMid(mids []string, wsMsg *common.WSMessage) {
+//	var (
+//		existed bool
+//		mid string
+//		wsConn *WSConnection
+//	)
+//
+//	bucket.rwMutex.RLock()
+//	defer bucket.rwMutex.RUnlock()
+//
+//	// 假如mids是一个100w的数据，可以实现吗?
+//	//
+//	//
+//	//
+//	//
+//	for _,mid = range mids {
+//		wsConn, existed = bucket.id2Conn[mid]
+//		if !existed {
+//			continue
+//		}
+//		wsConn.SendMessage(wsMsg)
+//	}
+//
+//}
 
 // 推送给Bucket内所有用户
 func (bucket *Bucket) PushAll(wsMsg *common.WSMessage) {

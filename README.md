@@ -105,16 +105,3 @@ curl http://localhost:7799/push/room -d 'room=default&items=[{"msg": "hi"},{"msg
 ```
 {"type": "PUSH", "data": {"items": [{"name": "go-push"}, {"age": "1"}]}}
 ```
-
-# 加入社群
-
-我的博客：
-
-[鱼儿的博客](https://yuerblog.cc)
-
-Go微信群：
-
-![wechat](https://github.com/owenliang/go-push/blob/master/E0B82999-82BB-4963-BC2D-FDEAF42230FC.jpeg?raw=true)
-
-知识星球（独家知识）：
-![xingqiu](https://github.com/owenliang/go-push/blob/master/xingqiu.png?raw=true)

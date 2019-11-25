@@ -57,6 +57,10 @@ func handlePushRoom(resp http.ResponseWriter, req *http.Request) {
 	G_gateConnMgr.PushRoom(room, msgArr)
 }
 
+func handlePushMids(resp http.ResponseWriter, req *http.Request) {
+	return
+}
+
 // 处理统计
 func handleStats(resp http.ResponseWriter, req *http.Request) {
 	var (
